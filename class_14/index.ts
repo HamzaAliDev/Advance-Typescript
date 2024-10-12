@@ -1,0 +1,49 @@
+import inquirer, { Answers, QuestionCollection } from 'inquirer';
+
+// making simple calculator
+const question: QuestionCollection = [
+    {
+        name: "num1",
+        type: "number",
+        message: "Enter 1st number "
+    },
+    {
+        name: "num2",
+        type: "number",
+        message: "Enter 2nd number "
+    },
+    {
+        name: "operation",
+        type: "list",
+        choices: ["+", "-", "*", "/"]
+    }
+]
+var answers: Promise<Answers> = inquirer.prompt(question)
+answers.then((answers: Answers) => {
+    switch (answers.operation) {
+        case "+":
+            console.log(`${answers.num1} + ${answers.num2} = ${answers.num1 + answers.num2}`);
+
+            break;
+        case "-":
+            console.log(`${answers.num1} - ${answers.num2} = ${answers.num1 - answers.num2}`);
+
+            break;
+        case "*":
+            console.log(`${answers.num1} * ${answers.num2} = ${answers.num1 * answers.num2}`);
+
+            break;
+        case "/":
+            console.log(`${answers.num1} / ${answers.num2} = ${answers.num1 / answers.num2}`);
+
+            break;
+
+        default:
+            break;
+    }
+
+})
+    .catch((error) => {
+        console.log("error", error);
+
+    })
